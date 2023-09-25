@@ -1,10 +1,10 @@
 const {Router} = require("express");
 const userRouter = Router();
-const {registerUser} = require("../controllers/controllers");
-const hashPassword = require("../middleware");
+const {registerUser,listAllUsers} = require("../controllers/controllers");
+const {hashPassword,passwordCheck} = require("../middleware");
 
 userRouter.post("/users/register",hashPassword,registerUser);
-// userRouter.get("/users/listAllUsers", listAllUsers);
+userRouter.get("/users/listAllUsers",passwordCheck, listAllUsers);
 // userRouter.delete("/users/deleteUser", deleteUser);
 // userRouter.put("/users/updatePassword", updatePassword);
 

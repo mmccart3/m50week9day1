@@ -24,4 +24,20 @@ async function registerUser (req, res) {
     }
 };
 
-module.exports = {registerUser}
+async function listAllUsers (req,res) {
+    try {
+        const listOfUsers = await User.findAll();
+        res.status(200).json({
+            message: "All users from the database are:",
+            userlist: listOfUsers
+        });
+    } catch (error) {
+        console.log(error);
+        res.status(501).json({
+            message: error.message,
+            detail: error
+        })
+    }
+}
+
+module.exports = {registerUser,listAllUsers}
