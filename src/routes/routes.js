@@ -1,11 +1,16 @@
 const {Router} = require("express");
 const userRouter = Router();
-const {registerUser,listAllUsers} = require("../controllers/controllers");
+// renames router to userRouter
+
+const {registerUser,listAllUsers,deleteUser, updatePassword} = require("../controllers/controllers");
+// all controller functions used need to be imported
 const {hashPassword,passwordCheck} = require("../middleware");
+// all middleware functions used need to be imported
 
 userRouter.post("/users/register",hashPassword,registerUser);
-userRouter.get("/users/listAllUsers",passwordCheck, listAllUsers);
-// userRouter.delete("/users/deleteUser", deleteUser);
-// userRouter.put("/users/updatePassword", updatePassword);
+//UserRouter takes 3 parameters, firstly the path name
+userRouter.get("/users/listAllUsers", passwordCheck, listAllUsers);
+userRouter.delete("/users/deleteUser", passwordCheck, deleteUser);
+userRouter.put("/users/updatePassword", passwordCheck, updatePassword);
 
 module.exports = userRouter;
