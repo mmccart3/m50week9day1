@@ -1,5 +1,7 @@
 const User = require("../models/users");
 const bcrypt = require("bcrypt");
+const jwt = require("jsonwebtoken");
+// require ("dotenv").config()
 
 async function registerUser (req, res) {
     try {
@@ -10,11 +12,25 @@ async function registerUser (req, res) {
             password: req.body.password
         });
         // sequelize create method is in the eqivalent of SQL insert
+        const expirationTime = 1000*60*60*24*7
+        console.log(process.env.JWTPASSWORD)
+        const privateKey = process.env.JWTPASSWORD
+        console.log(privateKey)
+        const payload = {
+            username:req.body.username
+        }
+        const options = {
+            expiresIn: expirationTime
+        }
+        const token = await jwt.sign(payload,privateKey,options)
+        console.log(token)
+
         res.status(201).json({
             message: "User Registered in the database",
             user: {
                 username: req.body.username,
-                email: req.body.email
+                email: req.body.email,
+                token: token 
             }
         })
     } catch (error) {
@@ -25,6 +41,19 @@ async function registerUser (req, res) {
         })
     }
 };
+
+
+async function loginUser (req,res) {
+try {
+    // This is where you write the code to generate a new token after logging in
+} catch (error) {
+    console.log(error);
+    res.status(501).json({
+        message: error.message,
+        detail: error
+    })
+}
+}
 
 async function listAllUsers (req,res) {
     try {
@@ -93,4 +122,4 @@ async function updatePassword(req,res) {
 }
 }
 
-module.exports = { registerUser, listAllUsers, deleteUser, updatePassword }
+module.exports = { registerUser, listAllUsers, deleteUser, updatePassword, loginUser }
