@@ -9,9 +9,9 @@ const {hashPassword,passwordCheck,tokenCheck} = require("../middleware");
 
 userRouter.post("/users/register",hashPassword,registerUser);
 //UserRouter takes 3 parameters, firstly the path name
-userRouter.get("/users/login", passwordCheck, loginUser);
+userRouter.post("/users/login", passwordCheck, loginUser);
 userRouter.get("/users/listAllUsers", tokenCheck, listAllUsers);
-userRouter.delete("/users/deleteUser", passwordCheck, deleteUser);
-userRouter.put("/users/updatePassword", passwordCheck, updatePassword);
+userRouter.delete("/users/deleteUser", tokenCheck, deleteUser);
+userRouter.put("/users/updatePassword", tokenCheck, updatePassword);
 
 module.exports = userRouter;

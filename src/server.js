@@ -1,6 +1,8 @@
 require("dotenv").config();
+const cors = require("cors")
 const express = require("express");
 const app = express();
+
 
 const userRouter = require("./routes/routes");
 const User = require("./models/users");
@@ -12,6 +14,7 @@ function syncTables() {
     // creates the user table if it does not already exist otherwise it does nothing
     // options includes alter: true and force: true if you change the model in model.js
 }
+app.use(cors());
 app.use(express.json());
 // converts incoming request to json objects. This must run before app.use(userRouter)
 app.use(userRouter);

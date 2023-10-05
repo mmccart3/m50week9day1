@@ -1,0 +1,85 @@
+{
+    "client": "Thunder Client",
+    "collectionName": "M50week9",
+    "dateExported": "2023-09-28T08:17:22.296Z",
+    "version": "1.1",
+    "folders": [],
+    "requests": [
+        {
+            "_id": "49aca5f8-9aed-492d-9844-cde71728b30c",
+            "colId": "4dd7d970-767a-44c2-9541-2c3fcaab749a",
+            "containerId": "",
+            "name": "Update Password",
+            "url": "localhost:5002/users/updatePassword",
+            "method": "PUT",
+            "sortNum": 10000,
+            "created": "2023-09-28T08:15:24.902Z",
+            "modified": "2023-09-28T08:15:24.902Z",
+            "headers": [],
+            "params": [],
+            "body": {
+                "type": "json",
+                "raw": "{\n  \"username\": \"mmccart5\",\n  \"password\": \"Password1234\",\n  \"newPassword\": \"Password12345\"\n}",
+                "form": []
+            },
+            "tests": []
+        },
+        {
+            "_id": "f5e7f806-2667-4132-b179-2866ff4cfe68",
+            "colId": "4dd7d970-767a-44c2-9541-2c3fcaab749a",
+            "containerId": "",
+            "name": "Update Password",
+            "url": "localhost:5002/users/updatePassword",
+            "method": "PUT",
+            "sortNum": 20000,
+            "created": "2023-09-28T08:15:52.151Z",
+            "modified": "2023-09-28T08:15:52.151Z",
+            "headers": [],
+            "params": [],
+            "body": {
+                "type": "json",
+                "raw": "{\n  \"username\": \"mmccart5\",\n  \"password\": \"Password1234\",\n  \"newPassword\": \"Password12345\"\n}",
+                "form": []
+            },
+            "tests": []
+        },
+        {
+            "_id": "50a21bfd-18f4-43b0-9ecf-f32fdf9bee45",
+            "colId": "4dd7d970-767a-44c2-9541-2c3fcaab749a",
+            "containerId": "",
+            "name": "Delete user",
+            "url": "localhost:5002/users/deleteUser",
+            "method": "DELETE",
+            "sortNum": 30000,
+            "created": "2023-09-28T08:16:04.000Z",
+            "modified": "2023-09-28T08:16:04.000Z",
+            "headers": [],
+            "params": [],
+            "body": {
+                "type": "json",
+                "raw": "{\n  \"username\": \"mmccart6\",\n  \"password\": \"Password1234\"\n}",
+                "form": []
+            },
+            "tests": []
+        },
+        {
+            "_id": "fdb5059f-7e64-48cc-9320-02b8fff186e6",
+            "colId": "4dd7d970-767a-44c2-9541-2c3fcaab749a",
+            "containerId": "",
+            "name": "Add User",
+            "url": "localhost:5002/users/register",
+            "method": "POST",
+            "sortNum": 40000,
+            "created": "2023-09-28T08:16:29.173Z",
+            "modified": "2023-09-28T08:16:29.173Z",
+            "headers": [],
+            "params": [],
+            "body": {
+                "type": "json",
+                "raw": "{\n  \"username\": \"mmccart16\",\n  \"email\": \"mm3guides@gmail.com\",\n  \"password\": \"Password1234\"\n}",
+                "form": []
+            },
+            "tests": []
+        }
+    ]
+}

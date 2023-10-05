@@ -13,9 +13,7 @@ async function registerUser (req, res) {
         });
         // sequelize create method is in the eqivalent of SQL insert
         const expirationTime = 1000*60*60*24*7
-        console.log(process.env.JWTPASSWORD)
         const privateKey = process.env.JWTPASSWORD
-        console.log(privateKey)
         const payload = {
             username:req.body.username
         }
@@ -46,6 +44,27 @@ async function registerUser (req, res) {
 async function loginUser (req,res) {
 try {
     // This is where you write the code to generate a new token after logging in
+    const expirationTime = 1000*60*60*24*7
+    console.log(process.env.JWTPASSWORD)
+    const privateKey = process.env.JWTPASSWORD
+    console.log(privateKey)
+    const payload = {
+        username:req.body.username
+    }
+    const options = {
+        expiresIn: expirationTime
+    }
+    const token = await jwt.sign(payload,privateKey,options)
+    console.log(token)
+
+    res.status(201).json({
+        message: "login successful, new token issued",
+        user: {
+            username: req.body.username,
+            email: req.body.email,
+            token: token 
+        }
+    })
 } catch (error) {
     console.log(error);
     res.status(501).json({
@@ -77,13 +96,13 @@ async function deleteUser(req,res) {
     try {
         const deleteResult = await User.destroy({
             where: {
-                username: req.body.username
+                username: req.user.username
             }
         })
         //sequelize destroy method
         console.log(deleteResult);
         //analyse deleteResult, could you put a check on this in your code isntead of just logging it?
-        res.status(200).send(`${req.body.username} has been deleted`);
+        res.status(200).send(`${req.user.username} has been deleted`);
     } catch (error) {
         console.log(error);
         res.status(501).json({
@@ -105,12 +124,12 @@ async function updatePassword(req,res) {
             password: hashedPassword
         },{
             where: {
-                username: req.body.username
+                username: req.user.username
             }
         });
         //sequelize update method
         console.log(updateResult);
-        //analyse updateResult, could you put a check on this in your code isntead of just logging it?
+        //analyse updateResult, could you put a check on this in your code instead of just logging it?
         res.status(200).send("Password successfully updated");
         //.send used in lieu of .json both are completely acceptable .send is wee bit more flexible
     } catch (error) {
