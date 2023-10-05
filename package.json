@@ -4,7 +4,7 @@
   "description": "A demonstration server to show the use of hashing using Bcrypt",
   "main": "server.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "start": "node src/server.js"
   },
   "author": "M J McCarthy",
   "license": "ISC",
